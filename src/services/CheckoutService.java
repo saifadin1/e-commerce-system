@@ -60,6 +60,9 @@ public class CheckoutService {
         }
 
         customer.pay(paidAmount);
+        for (CartItem item : cartItems) {
+            item.getProduct().reduceQuantity(item.getQuantity());
+        }
 
         double newBalance = customer.getBalance();
 
