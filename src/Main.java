@@ -1,7 +1,6 @@
 import behaviours.Expirable;
 import behaviours.NonExpirable;
 import behaviours.Shippable;
-import behaviours.interfaces.ExpirationBehavior;
 import models.Cart;
 import models.Customer;
 import models.Product;
