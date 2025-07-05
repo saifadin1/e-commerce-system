@@ -7,6 +7,9 @@ import java.time.LocalDate;
 public class Expirable implements ExpirationBehavior {
     private LocalDate expiryDate;
 
+    public Expirable(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 
     @Override
     public boolean isExpired() {

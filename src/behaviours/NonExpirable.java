@@ -1,4 +1,10 @@
 package behaviours;
 
-public class NonExpirable {
+import behaviours.interfaces.ExpirationBehavior;
+
+public class NonExpirable implements ExpirationBehavior {
+    @Override
+    public boolean isExpired() {
+        return false;
+    }
 }
