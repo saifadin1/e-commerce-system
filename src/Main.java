@@ -14,9 +14,9 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
         Product tv = new Product(
-                "tv", 200, 3,
+                "tv", 500, 3,
                 new NonExpirable(),
-                new Shippable(10)
+                new Shippable(0)
         );
 
         Product cheese = new Product(
@@ -34,11 +34,11 @@ public class Main {
         CheckoutService checkoutService = new CheckoutService();
 
 
-        Customer customer = new Customer("seif", 1000);
+        Customer customer = new Customer("seif", 1000.5);
         Cart cart = new Cart();
-        cart.addItem(cheese, 1);
-        cart.addItem(tv, 1);
-        cart.addItem(scratchCard, 1);
+//        cart.addItem(cheese, 1);
+        cart.addItem(tv, 2);
+//        cart.addItem(scratchCard, 1);
 
         checkoutService.checkout(customer, cart);
 

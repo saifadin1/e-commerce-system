@@ -53,7 +53,7 @@ public class CheckoutService {
 
         double paidAmount = subtotal + shippingFees;
 
-        // check if the customer's b alance is sufficient
+        // check if the customer's balance is sufficient
         if (paidAmount > customer.getBalance()) {
             System.out.println("Insufficient balance to complete the purchase.");
             return;
@@ -81,10 +81,10 @@ public class CheckoutService {
             double weight = item.getProduct().getShippingBehavior().getWeight();
 
             if (item.getProduct().getShippingBehavior().requiresShipping()) {
-                shipmentNotice.append(String.format("%-4dx %-15s %5.0fg%n", quantity, name, weight * 1000));
+                shipmentNotice.append(String.format("%-4dx %-15s %6.0fg%n", quantity, name, weight * 1000));
             }
 
-            receipt.append(String.format("%-4dx %-15s %5.0f%n", quantity, name, price * quantity));
+            receipt.append(String.format("%-4dx %-15s %8.2f%n", quantity, name, price * quantity));
         }
 
         double total = subtotal + shippingFees;
@@ -94,11 +94,12 @@ public class CheckoutService {
 
         System.out.print(receipt);
         System.out.println("----------------------");
-        System.out.printf("%-20s %5.0f%n", "Subtotal", subtotal);
-        System.out.printf("%-20s %5.0f%n", "Shipping", shippingFees);
-        System.out.printf("%-20s %5.0f%n", "Amount", total);
-        System.out.printf("%-20s %5.0f%n", "Remaining Balance", newBalance);
+        System.out.printf("%-20s %8.2f%n", "Subtotal", subtotal);
+        System.out.printf("%-20s %8.2f%n", "Shipping", shippingFees);
+        System.out.printf("%-20s %8.2f%n", "Amount", total);
+        System.out.printf("%-20s %8.2f%n", "Remaining Balance", newBalance);
     }
+
 
 
 }
