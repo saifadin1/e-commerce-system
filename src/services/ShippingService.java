@@ -1,11 +1,11 @@
 package services;
 
-import models.Product;
+import interfaces.ShippedItem;
 
 import java.util.List;
 
 public class ShippingService {
-    public void ship(List<Product> shippedProducts) {
+    public void ship(List<ShippedItem> shippedProducts) {
         if (shippedProducts == null || shippedProducts.isEmpty()) {
             System.out.println("No products to ship.");
             return;
@@ -13,9 +13,9 @@ public class ShippingService {
 
         System.out.println("Shipping the following products:");
 
-        for (Product product : shippedProducts) {
+        for (ShippedItem product : shippedProducts) {
             String name = product.getName();
-            double weight = product.getShippingBehavior().getWeight();
+            double weight = product.getWeight();
             System.out.printf("• %s - %.2f kg%n", name, weight);
         }
 

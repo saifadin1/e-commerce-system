@@ -2,11 +2,13 @@ package models;
 
 import behaviours.interfaces.ExpirationBehavior;
 import behaviours.interfaces.ShippingBehavior;
+import interfaces.ShippedItem;
 
-public class Product {
+public class Product implements ShippedItem {
     private String name;
     private double price;
     private int quantity;
+    private double weight;
     private ExpirationBehavior expirationBehavior;
     private ShippingBehavior shippingBehavior;
 
@@ -29,6 +31,11 @@ public class Product {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public double getWeight() {
+        return 0;
     }
 
     public int getQuantity() {

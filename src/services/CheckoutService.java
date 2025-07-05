@@ -1,9 +1,9 @@
 package services;
 
+import interfaces.ShippedItem;
 import models.Cart;
 import models.CartItem;
 import models.Customer;
-import models.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class CheckoutService {
         }
 
         List<CartItem> cartItems = cart.getItems();
-        List<Product> tobeShippedProducts = new ArrayList<>();
+        List<ShippedItem> tobeShippedProducts = new ArrayList<>();
         double shippingFees = 0.0;
         double totalWeight = 0.0;
         double subtotal = 0.0;
