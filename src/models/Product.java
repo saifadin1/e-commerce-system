@@ -34,4 +34,12 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
+
+    public ExpirationBehavior getExpirationBehavior() {
+        return expirationBehavior;
+    }
+
+    public ShippingBehavior getShippingBehavior() {
+        return shippingBehavior;
+    }
 }

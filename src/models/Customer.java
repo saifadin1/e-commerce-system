@@ -24,9 +24,6 @@ public class Customer {
     }
 
     public void pay(double amount) {
-        if (amount  > balance) {
-            throw new IllegalArgumentException("Customer's balance is insufficient");
-        }
         balance -= amount;
     }
 }
