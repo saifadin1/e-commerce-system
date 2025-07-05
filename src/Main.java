@@ -1,5 +1,6 @@
 import behaviours.Expirable;
 import behaviours.NonExpirable;
+import behaviours.NonShippable;
 import behaviours.Shippable;
 import models.Cart;
 import models.Customer;
@@ -24,6 +25,12 @@ public class Main {
                 new Shippable(0.5)
         );
 
+        Product scratchCard = new Product(
+                "scratchCard", 50, 1,
+                new NonExpirable(),
+                new NonShippable()
+        );
+
         CheckoutService checkoutService = new CheckoutService();
 
 
@@ -31,6 +38,7 @@ public class Main {
         Cart cart = new Cart();
         cart.addItem(cheese, 1);
         cart.addItem(tv, 1);
+        cart.addItem(scratchCard, 1);
 
         checkoutService.checkout(customer, cart);
 

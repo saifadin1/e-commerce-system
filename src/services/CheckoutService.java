@@ -80,21 +80,25 @@ public class CheckoutService {
             double price = item.getProduct().getPrice();
             double weight = item.getProduct().getShippingBehavior().getWeight();
 
-            shipmentNotice.append(String.format("%dx %s %.0fg%n", quantity, name, weight * 1000));
-            receipt.append(String.format("%dx %s %.0f%n", quantity, name, price * quantity));
+            if (item.getProduct().getShippingBehavior().requiresShipping()) {
+                shipmentNotice.append(String.format("%-4dx %-15s %5.0fg%n", quantity, name, weight * 1000));
+            }
+
+            receipt.append(String.format("%-4dx %-15s %5.0f%n", quantity, name, price * quantity));
         }
 
         double total = subtotal + shippingFees;
 
-        System.out.println(shipmentNotice);
+        System.out.print(shipmentNotice);
         System.out.printf("Total package weight %.1fkg%n%n", totalWeight);
 
-        System.out.println(receipt);
+        System.out.print(receipt);
         System.out.println("----------------------");
-        System.out.printf("Subtotal %.0f%n", subtotal);
-        System.out.printf("Shipping %.0f%n", shippingFees);
-        System.out.printf("Amount %.0f%n", total);
-        System.out.printf("Remaining Balance %.0f%n", newBalance);
+        System.out.printf("%-20s %5.0f%n", "Subtotal", subtotal);
+        System.out.printf("%-20s %5.0f%n", "Shipping", shippingFees);
+        System.out.printf("%-20s %5.0f%n", "Amount", total);
+        System.out.printf("%-20s %5.0f%n", "Remaining Balance", newBalance);
     }
+
 
 }
