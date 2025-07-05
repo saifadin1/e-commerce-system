@@ -3,10 +3,13 @@ package services;
 import models.Cart;
 import models.CartItem;
 import models.Customer;
+import models.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutService {
+    ShippingService shippingService = new ShippingService();
     public void checkout(Customer customer, Cart cart) {
         if (cart.isEmpty()) {
             System.out.println("Cart is empty");
@@ -14,6 +17,7 @@ public class CheckoutService {
         }
 
         List<CartItem> cartItems = cart.getItems();
+        List<Product> tobeShippedProducts = new ArrayList<>();
         double shippingFees = 0.0;
         double totalWeight = 0.0;
         double subtotal = 0.0;
@@ -41,11 +45,15 @@ public class CheckoutService {
             subtotal += itemTotal;
             totalWeight += weight * quantity;
             shippingFees += weight * quantity * 10; // i assumed that $10 per kg for now
+
+            if (item.getProduct().getShippingBehavior().requiresShipping()) {
+                tobeShippedProducts.add(item.getProduct());
+            }
         }
 
         double paidAmount = subtotal + shippingFees;
 
-        // check if the customer's balance is sufficient
+        // check if the customer's b alance is sufficient
         if (paidAmount > customer.getBalance()) {
             System.out.println("Insufficient balance to complete the purchase.");
             return;
@@ -56,6 +64,7 @@ public class CheckoutService {
         double newBalance = customer.getBalance();
 
         printReceipt(cartItems, subtotal, shippingFees, totalWeight,  newBalance);
+        shippingService.ship(tobeShippedProducts);
     }
 
     private void printReceipt(List<CartItem> cartItems, double subtotal, double shippingFees, double totalWeight, double newBalance) {
