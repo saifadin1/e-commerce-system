@@ -33,14 +33,14 @@ checkoutService.checkout(customer, cart);
 ## Console output 
 
     ** Shipment notice **
-    1   x cheese            500g
-    1   x tv              10000g
+    1x cheese            500g
+    1x tv              10000g
     Total package weight 10.5kg
     
     ** Checkout receipt **
-    1   x cheese            100
-    1   x tv                200
-    1   x scratchCard        50
+    1x cheese            100
+    1x tv                200
+    1x scratchCard        50
     ----------------------
     Subtotal               350
     Shipping               105
